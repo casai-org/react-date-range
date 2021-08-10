@@ -152,6 +152,29 @@ class DayCell extends Component {
 
   render() {
     const { dayContentRenderer } = this.props;
+    if (dayContentRenderer) {
+      const classNames = this.getClassNames(this.props.styles);
+      const style = { color: this.props.color };
+      return dayContentRenderer({
+        onMouseEnter: this.handleMouseEvent,
+        onMouseLeave: this.handleMouseEvent,
+        onFocus: this.handleMouseEvent,
+        onMouseDown: this.handleMouseEvent,
+        onMouseUp: this.handleMouseEvent,
+        onBlur: this.handleMouseEvent,
+        onPauseCapture: this.handleMouseEvent,
+        onKeyDown: this.handleKeyEvent,
+        onKeyUp: this.handleKeyEvent,
+        className: classNames,
+        style: style,
+        renderSelectionPlaceholders: this.renderSelectionPlaceholders,
+        renderPreviewPlaceholder: this.renderPreviewPlaceholder,
+        dayNumberStyles: this.props.styles.dayNumber,
+        date: this.props.day,
+        ...(this.props.disabled || this.props.isPassive ? { tabIndex: -1 } : {}),
+      });
+    }
+
     return (
       <button
         type="button"
@@ -170,10 +193,9 @@ class DayCell extends Component {
         {this.renderSelectionPlaceholders()}
         {this.renderPreviewPlaceholder()}
         <span className={this.props.styles.dayNumber}>
-          {
-            dayContentRenderer?.(this.props.day) ||
+          {dayContentRenderer?.(this.props.day) || (
             <span>{format(this.props.day, this.props.dayDisplayFormat)}</span>
-          }
+          )}
         </span>
       </button>
     );

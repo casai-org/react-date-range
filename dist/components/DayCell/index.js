@@ -249,6 +249,33 @@ var DayCell = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var dayContentRenderer = this.props.dayContentRenderer;
+
+      if (dayContentRenderer) {
+        var classNames = this.getClassNames(this.props.styles);
+        var style = {
+          color: this.props.color
+        };
+        return dayContentRenderer(_objectSpread({
+          onMouseEnter: this.handleMouseEvent,
+          onMouseLeave: this.handleMouseEvent,
+          onFocus: this.handleMouseEvent,
+          onMouseDown: this.handleMouseEvent,
+          onMouseUp: this.handleMouseEvent,
+          onBlur: this.handleMouseEvent,
+          onPauseCapture: this.handleMouseEvent,
+          onKeyDown: this.handleKeyEvent,
+          onKeyUp: this.handleKeyEvent,
+          className: classNames,
+          style: style,
+          renderSelectionPlaceholders: this.renderSelectionPlaceholders,
+          renderPreviewPlaceholder: this.renderPreviewPlaceholder,
+          dayNumberStyles: this.props.styles.dayNumber,
+          date: this.props.day
+        }, this.props.disabled || this.props.isPassive ? {
+          tabIndex: -1
+        } : {}));
+      }
+
       return /*#__PURE__*/_react.default.createElement("button", _extends({
         type: "button",
         onMouseEnter: this.handleMouseEvent,

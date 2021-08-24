@@ -104,18 +104,11 @@ module.exports = {
       name: 'Components',
       sections: [
         {
-          components: () => ['src/components/DateRangePicker/index.js'],
-          usageMode: 'hide',
-        },
-        {
           components: () => ['src/components/DateRange/index.js'],
           usageMode: 'hide',
         },
         {
           components: () => ['src/components/Calendar/index.js'],
-        },
-        {
-          components: () => ['src/components/DefinedRange/index.js'],
         },
       ],
       sectionDepth: 0,

@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { rangeShape } from '../DayCell';
 import Month from '../Month';
-import DateInput from '../DateInput';
 import { calcFocusDate, generateStyles, getMonthDisplayRange } from '../../utils';
 import classnames from 'classnames';
 import ReactList from 'react-list';
@@ -257,74 +256,6 @@ class Calendar extends PureComponent {
       </div>
     );
   }
-  renderDateDisplay = () => {
-    const {
-      focusedRange,
-      color,
-      ranges,
-      rangeColors,
-      dateDisplayFormat,
-      editableDateInputs,
-      startDatePlaceholder,
-      endDatePlaceholder,
-      ariaLabels,
-    } = this.props;
-
-    const defaultColor = rangeColors[focusedRange[0]] || color;
-    const styles = this.styles;
-
-    return (
-      <div className={styles.dateDisplayWrapper}>
-        {ranges.map((range, i) => {
-          if (range.showDateDisplay === false || (range.disabled && !range.showDateDisplay))
-            return null;
-          return (
-            <div
-              className={styles.dateDisplay}
-              key={i}
-              style={{ color: range.color || defaultColor }}>
-              <DateInput
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
-                })}
-                readOnly={!editableDateInputs}
-                disabled={range.disabled}
-                value={range.startDate}
-                placeholder={startDatePlaceholder}
-                dateOptions={this.dateOptions}
-                dateDisplayFormat={dateDisplayFormat}
-                ariaLabel={
-                  ariaLabels.dateInput &&
-                  ariaLabels.dateInput[range.key] &&
-                  ariaLabels.dateInput[range.key].startDate
-                }
-                onChange={this.onDragSelectionEnd}
-                onFocus={() => this.handleRangeFocusChange(i, 0)}
-              />
-              <DateInput
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
-                })}
-                readOnly={!editableDateInputs}
-                disabled={range.disabled}
-                value={range.endDate}
-                placeholder={endDatePlaceholder}
-                dateOptions={this.dateOptions}
-                dateDisplayFormat={dateDisplayFormat}
-                ariaLabel={
-                  ariaLabels.dateInput &&
-                  ariaLabels.dateInput[range.key] &&
-                  ariaLabels.dateInput[range.key].endDate
-                }
-                onChange={this.onDragSelectionEnd}
-                onFocus={() => this.handleRangeFocusChange(i, 1)}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
   onDragSelectionStart = date => {
     const { onChange, dragSelectionEnabled } = this.props;
 
@@ -389,7 +320,6 @@ class Calendar extends PureComponent {
   };
   render() {
     const {
-      showDateDisplay,
       onPreviewChange,
       scroll,
       direction,
@@ -418,7 +348,6 @@ class Calendar extends PureComponent {
         onMouseLeave={() => {
           this.setState({ drag: { status: false, range: {} } });
         }}>
-        {showDateDisplay && this.renderDateDisplay()}
         {monthAndYearRenderer(focusedDate, this.changeShownDate, this.props)}
         {scroll.enabled ? (
           <div>

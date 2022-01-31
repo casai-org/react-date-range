@@ -21,7 +21,6 @@ export interface Range {
   key?: string | undefined;
   autoFocus?: boolean | undefined;
   disabled?: boolean | undefined;
-  showDateDisplay?: boolean | undefined;
 }
 export interface RangeWithKey extends Range {
   key: 'selection';

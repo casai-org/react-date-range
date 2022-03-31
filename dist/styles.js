@@ -42,7 +42,6 @@ var _default = {
   months: 'rdrMonths',
   monthPicker: 'rdrMonthPicker',
   yearPicker: 'rdrYearPicker',
-  dateDisplayWrapper: 'rdrDateDisplayWrapper',
   definedRangesWrapper: 'rdrDefinedRangesWrapper',
   staticRanges: 'rdrStaticRanges',
   staticRange: 'rdrStaticRange',

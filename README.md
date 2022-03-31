@@ -128,6 +128,8 @@ preview(DateRange)                   | Object    |                  | displays a
 showPreview(DateRange)               | bool      | true             | visibility of preview
 editableDateInputs(Calendar)         | bool      | false            | whether dates can be edited in the Calendar's input fields
 dragSelectionEnabled(Calendar)       | bool      | true             | whether dates can be selected via drag n drop
+calendarFocus(Calendar)              | String    | 'forwards'       | Whether calendar focus month should be forward-driven or backwards-driven. can be 'forwards' or 'backwards'
+preventSnapRefocus(Calendar)  | bool      | false            | prevents unneceessary refocus of shown range on selection
 onPreviewChange(DateRange)           | Object    |                  | Callback function for preview changes
 dateDisplayFormat                    | String    | `MMM d, yyyy`    | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
 dayDisplayFormat                     | String    | `d`              | selected range preview formatter. Check out [date-fns's format option](https://date-fns.org/docs/format)
@@ -175,7 +177,7 @@ dayContentRenderer                   | Function  | null             | Function t
 #### Infinite Scrolled Mode
 
 To enable infinite scroll set `scroll={{enabled: true}}` basically. Infinite scroll feature is affected by `direction`(rendering direction for months) and `months`(for rendered months count) props directly.
-If you prefer, you can overwrite calendar sizes with `calendarWidth`/`calendarHeight` or each month's height/withs with `monthWidth`/`monthHeight`/`longMonthHeight` at `scroll` prop.
+If you prefer, you can overwrite calendar sizes with `calendarWidth`/`calendarHeight` or each month's height/width with `monthWidth`/`monthHeight`/`longMonthHeight` at `scroll` prop.
 
 ```js
   // shape of scroll prop
